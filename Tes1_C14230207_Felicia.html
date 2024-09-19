@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TES 1 TEKWEB</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+    
+
+        <div class="row bg-light">
+            <div class="container-fluid mt-0">
+                <div class="row">
+                    <div class="col-12 bg-info p-3">
+                      <h2 class="text-light fw-bold" style="margin-left: 15px ;">Kanban View</h2>
+                    </div>
+                  </div>
+                </div>
+        
+            
+            <div class="row bg-light mb-4">
+                <div class="col-12 col-md-4 p-3">
+                    <form id="taskForm" style="margin-left: 15px ;">
+                        <div class="form-group">
+                            <label for="taskTitle">Tugas</label>
+                            <input type="text" class="form-control" id="taskTitle" required>
+                        </div>
+                        <div class="form-group" >
+                            <label for="taskStatus">Status</label>
+                            <select class="form-control" id="taskStatus">
+                                <option value="pending">Pending</option>
+                                <option value="planning">Planning</option>
+                                <option value="design">Design</option>
+                                <option value="development">Development</option>
+                                <option value="testing">Testing</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </br>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row p-5 bg-light" style="margin-left: 65px;"> 
+                <div class="card bg-light" 
+                    style="max-width: 12rem;"> 
+                    <div class="card-header bg-secondary-subtle fw-bold">Pending</div> 
+                    <div id="pending" class="kanbanCard"></div>
+                </div> 
+                <div class="card bg-light ms-2" 
+                    style="max-width:12rem;"> 
+                    <div class="card-header bg-secondary-subtle fw-bold">Planning</div> 
+                    <div id="planning" class="kanbanCard"></div>
+                </div> 
+                <div class="card bg-light ms-2" 
+                    style="max-width: 12rem;"> 
+                    <div class="card-header bg-secondary-subtle fw-bold">Design</div> 
+                    <div id="design" class="kanbanCard"></div>
+                </div>
+
+                <div class="card bg-light ms-2" 
+                    style="max-width: 12rem;"> 
+                    <div class="card-header bg-secondary-subtle fw-bold">Development</div> 
+                    <div id="development" class="kanbanCard"></div>
+                </div>
+
+                <div class="card bg-light ms-2" 
+                    style="max-width: 12rem;"> 
+                    <div class="card-header bg-secondary-subtle fw-bold" ;>Testing</div> 
+                    <div id="testing" class="kanbanCard"></div>
+                </div>
+
+                <div class="card bg-light ms-2 col-12 col-md-4" 
+                    style="max-width: 12rem;"> 
+                    <div class="card-header bg-secondary-subtle fw-bold">Resolved</div> 
+                    <div id="resolved" class="kanbanCard"></div>
+                </div>
+                                        
+            </div> 
+
+            <div class="row bg-secondary">
+                <div class="col-12 col-md-12 p-3">
+                    <div class="text-center text-light"><em>C14230207-Felicia Audrey</em></div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
+
+<script>
+    $(document).ready(function() {
+
+        $('#taskForm').submit(function(e) {
+            e.preventDefault(); //hindari submit kosongan
+    
+            let taskTitle = $('#taskTitle').val();
+            let taskStatus = $('#taskStatus').val();
+    
+    
+            let newCard = $('<div class="card mb-2"><div class="card-body">' + taskTitle + '</div></div>');
+    
+            // tambahin tugas
+            $('#' + taskStatus).append(newCard);
+    
+            // Clear the form inputs
+            $('#taskTitle').val('');
+            $('#taskStatus').val('');
+        });
+    
+        // Remove saat double click
+        $(".kanbanCard").dblclick(function() {
+            $(this).empty();
+        });
+
+        
+    }); 
+    
+    </script>
+    
+    
+    
+    
